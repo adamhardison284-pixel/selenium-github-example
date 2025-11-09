@@ -27,7 +27,7 @@ def main():
     driver = webdriver.Chrome(service=Service(chromedriver_path), options=options)
     url = "https://sprintmail.ru/"
     for smtp in smtps:
-    	if smtp['ready'] == True:
+    	if smtp['ready'] == True and smtp['checked'] == False :
             driver.get(url)
             thus = True
             while thus:
@@ -43,7 +43,7 @@ def main():
                     driver.execute_script("document.getElementsByClassName('logout')[0].click()")
                     time.sleep(2)
                 else:
-                    response_data_ = supabase.table('gmail_smtps').update({"ready": 0}).eq("id", smtp['id']).execute()
+                    response_data_ = supabase.table('gmail_smtps').update({"ready": 0, "checked": 1}).eq("id", smtp['id']).execute()
 
 if __name__ == "__main__":
     main()
