@@ -1,34 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver import ChromeOptions
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+import os
 
 def main():
-    # Configure Chrome options for headless mode
-    options = ChromeOptions()
+    chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")
+    chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
+
+    options = Options()
+    options.binary_location = chrome_bin
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    # Create the driver
-    driver = webdriver.Chrome(options=options)
-
-    try:
-        url = "https://sprintmail.ru/"
-        driver.get(url)
-
-        print("Page title:", driver.title)
-
-        # Save a screenshot to verify it worked
-        driver.save_screenshot("screenshot.png")
-        print("Screenshot saved as screenshot.png")
-
-        # Example: find an element
-        heading = driver.find_element(By.TAG_NAME, "h1").text
-        print("Heading text:", heading)
-
-    finally:
-        driver.quit()
+    driver = webdriver.Chrome(service=Service(chromedriver_path), options=options)
+    url = "https://sprintmail.ru/"
+    driver.get(url)
+    print("Title:", driver.title)
+    driver.save_screenshot("screenshot.png")
+    driver.quit()
 
 if __name__ == "__main__":
     main()
