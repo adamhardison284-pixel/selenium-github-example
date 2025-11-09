@@ -28,7 +28,7 @@ def main():
     url = "https://sprintmail.ru/"
     for smtp in smtps:
         print('username: ', smtp['username'])
-    	if smtp['ready'] == True and smtp['checked'] == False :
+        if smtp['ready'] == True and smtp['checked'] == False:
             driver.get(url)
             thus = True
             while thus:
@@ -43,8 +43,10 @@ def main():
                     response_data_ = supabase.table('gmail_smtps').update({"ready": 1, "checked": 1}).eq("id", smtp['id']).execute()
                     driver.execute_script("document.getElementsByClassName('logout')[0].click()")
                     time.sleep(2)
+                    print('username: yes'])
                 else:
                     response_data_ = supabase.table('gmail_smtps').update({"ready": 0, "checked": 1}).eq("id", smtp['id']).execute()
+                    print('username: no'])
 
 if __name__ == "__main__":
     main()
