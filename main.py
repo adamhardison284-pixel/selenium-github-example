@@ -27,6 +27,7 @@ def main():
     driver = webdriver.Chrome(service=Service(chromedriver_path), options=options)
     url = "https://sprintmail.ru/"
     for smtp in smtps:
+        print('username: ', smtp['username'])
     	if smtp['ready'] == True and smtp['checked'] == False :
             driver.get(url)
             thus = True
