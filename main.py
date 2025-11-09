@@ -31,8 +31,8 @@ def main():
             driver.get(url)
             thus = True
             while thus:
-                user_inp = driver.find_elements(By.ID, "webmail_username")
-                user_pass = driver.find_elements(By.ID, "webmail_pass")
+                user_inp = driver.find_element(By.ID, "webmail_username")
+                user_pass = driver.find_element(By.ID, "webmail_pass")
                 user_inp.send_keys(smtp['username'])
                 user_pass.send_keys("Arbinaji1987$", Keys.ENTER)
                 time.sleep(3)
