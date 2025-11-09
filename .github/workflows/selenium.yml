@@ -23,12 +23,15 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Install Chrome
+      - name: Install Chrome and ChromeDriver
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium-browser chromium-chromedriver
-          export CHROME_BIN=/usr/bin/chromium-browser
-          export CHROMEDRIVER_PATH=/usr/bin/chromedriver
+          sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
+          echo "✅ Chrome and Chromedriver installed"
 
       - name: Run Selenium script
+        env:
+          CHROME_BIN: /usr/bin/chromium-browser
+          CHROMEDRIVER_PATH: /usr/bin/chromedriver
         run: python main.py
