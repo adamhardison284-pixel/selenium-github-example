@@ -28,7 +28,8 @@ def main():
     url = "https://sprintmail.ru/"
     for smtp in smtps:
         print('username: ', smtp['username'])
-        if smtp['ready'] == True and smtp['checked'] == False:
+        #if smtp['ready'] == True and smtp['checked'] == False:
+        if smtp['ready'] == True:
             driver.get(url)
             thus = True
             while thus:
