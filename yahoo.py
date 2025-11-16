@@ -22,7 +22,6 @@ def main():
     while thus_1:
         thus_2 = True
         while thus_2:
-            try:
                 chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")
                 chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
                 options = Options()
@@ -152,8 +151,6 @@ def main():
                 driver.quit()
                 driver.close()
                 driver.dispose()
-            except:
-                print('err: ')
 
         print('Fin')
 
