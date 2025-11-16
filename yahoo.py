@@ -1,3 +1,5 @@
+import tempfile
+import shutil
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -23,12 +25,15 @@ def main():
     while thus_1:
         thus_2 = True
         while thus_2:
+            profile_dir = tempfile.mkdtemp()
             try:
                 chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")
                 chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
+                
                 options = Options()
                 options.binary_location = chrome_bin
                 options.add_argument("--headless")
+                options.add_argument(f"--user-data-dir={profile_dir}")
                 options.add_argument("--no-sandbox")
                 options.add_argument("--disable-dev-shm-usage")
                 driver = webdriver.Chrome(service=Service(chromedriver_path), options=options)
@@ -79,7 +84,18 @@ def main():
                         driver.back()
                         time.sleep(2)
                         
-                    if 'account/challenge/challenge-selector?done=' in current_url:
+                    elif 'account/challenge/pwqa?done=' in current_url:
+                        try:
+                            response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "yes"}).eq("id", id).execute()
+                            response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
+                            print(f"valid  -> {str(id)}: ", response_data_3.data[0]['valid'])
+                            print('yes: ', em)
+                        except:
+                            pass
+                        driver.back()
+                        time.sleep(2)
+                        
+                    elif 'account/challenge/challenge-selector?done=' in current_url:
                         try:
                             response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "yes"}).eq("id", id).execute()
                             response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
@@ -153,7 +169,9 @@ def main():
                 driver.quit()
                 driver.close()
                 driver.dispose()
+                shutil.rmtree(profile_dir, ignore_errors=True)
             except:
+                shutil.rmtree(profile_dir, ignore_errors=True)
                 print('err: ')
 
         print('Fin')
