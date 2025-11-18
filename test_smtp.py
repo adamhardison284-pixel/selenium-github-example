@@ -280,7 +280,7 @@ for x in range(100):
 	#sender_email = "helena-jahn@a1192087.xsph.ru"
 	password = 'Arbinaji1987$'
 	for x in range(50):
-		if bcl = True:
+		if bcl == True:
 			"""
 			receiver_email = 'laurawinskey@gmail.com'
 			receiver_email = 'haitam.naji1994@gmail.com'
