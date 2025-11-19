@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 bcl = True
 def send_email(subject, sender_email, password, receiver_email, text, html, offer_id, smtp_id, smtp_host):
+	bccl = True
 	try:
 		msg = MIMEMultipart("alternative")
 		msg["Subject"] = subject
@@ -35,13 +36,14 @@ def send_email(subject, sender_email, password, receiver_email, text, html, offe
 			"""
 			print('yes sent')
 			print('sender: ', sender_email)
-			
+			return True
 	except:
 		offer_id = int(offer_id)
 		bcl = False
 		response_ = supabase.table("drops").delete().eq("email", receiver_email).eq("offer_id", offer_id).execute()
 		response_data_ = supabase.table('sprint_host_smtps').update({"ready": 0}).eq("id", smtp_id).execute()
 		print('not sent')
+		return False
 
 #url: str = os.environ.get("SUPABASE_URL")
 #key: str = os.environ.get("SUPABASE_KEY")
@@ -280,56 +282,30 @@ for x in range(100):
 	#sender_email = "helena-jahn@a1192087.xsph.ru"
 	password = 'Arbinaji1987$'
 	for x in range(50):
-		if bcl == True:
-			"""
-			receiver_email = 'laurawinskey@gmail.com'
-			receiver_email = 'haitam.naji1994@gmail.com'
-			receiver_email = 'Catherine.blara@hotmail.com'
-			receiver_email = 'nancycronin387cc@web.de'
+		"""
+		receiver_email = 'laurawinskey@gmail.com'
+		receiver_email = 'haitam.naji1994@gmail.com'
+		receiver_email = 'Catherine.blara@hotmail.com'
+		receiver_email = 'nancycronin387cc@web.de'
+		receiver_email = 'kamlal.fahmi@yahoo.com'
+		"""
+		receiver_email = 'kamlal.fahmi@yahoo.com'
+		if x % 10 != 0:
+			response_1 = supabase.rpc(
+				"get_one_email_and_insert",
+				{"p_table": table_name, "p_offer_id": of_id}
+			).execute()
+			print('response_1.data: ', response_1.data[0]['email'])
+			receiver_email = response_1.data[0]['email']
+		else:
 			receiver_email = 'kamlal.fahmi@yahoo.com'
-			"""
-			receiver_email = 'kamlal.fahmi@yahoo.com'
-			if x % 10 != 0:
-				response_1 = supabase.rpc(
-					"get_one_email_and_insert",
-					{"p_table": table_name, "p_offer_id": of_id}
-				).execute()
-				print('response_1.data: ', response_1.data[0]['email'])
-				receiver_email = response_1.data[0]['email']
-			else:
-				receiver_email = 'kamlal.fahmi@yahoo.com'
-				
-			msg = msg.replace('[em]', receiver_email)
-			msg = msg.replace('[of_id]', of_id)
-			m_host = smtp['host']
-			#m_host = 'smtp.a1192087.xsph.ru'
-			send_email(subject, sender_email, password, receiver_email, txt_msg, msg, of_id, smtp['id'], m_host)
+			
+		msg = msg.replace('[em]', receiver_email)
+		msg = msg.replace('[of_id]', of_id)
+		m_host = smtp['host']
+		#m_host = 'smtp.a1192087.xsph.ru'
+		ress = send_email(subject, sender_email, password, receiver_email, txt_msg, msg, of_id, smtp['id'], m_host)
+		if ress == True:
+			pass
 		else:
 			break
-			
-			msgaa = """
-				<p>Hallo,</p>
-				<p><span zeum4c2="PR_1_0" data-ddnwab="PR_1_0" aria-invalid="grammar" class="Lm ng">wir</span> haben etwas ganz Besonderes nur für dich! <img data-emoji="🎉" class="an1" alt="🎉" aria-label="🎉" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f389/32.png" loading="lazy"></p>
-				<p>Für kurze Zeit verschenken wir <strong>exklusive Produkte</strong> – völlig kostenlos. Wähle einfach deine Favoriten aus und wir kümmern uns um den Rest. Egal ob <strong>stilvolle Uhren</strong>, <strong>moderne Wohn- &amp; Dekoartikel</strong>, <strong>praktische Küchenhelfer</strong>, <strong>trendige <span zeum4c2="PR_2_0" data-ddnwab="PR_2_0" aria-invalid="spelling" class="LI ng">Herrenaccessoires</span></strong> oder <strong>bequeme Schuhe</strong> – hier ist für jeden etwas dabei.</p>
-				<p><img data-emoji="💥" class="an1" alt="💥" aria-label="💥" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f4a5/32.png" loading="lazy"> <strong>Warum wir das tun:</strong><br>
-				Wir möchten unsere Community erweitern und suchen ehrliches Feedback von echten Testern. Du bekommst die Produkte gratis, probierst sie aus und teilst deine Meinung – ganz einfach!</p>
-				<p><img data-emoji="👉" class="an1" alt="👉" aria-label="👉" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f449/32.png" loading="lazy"> <strong>So bekommst du deine Gratis-Produkte:</strong></p>
-				<ol>
-				<li>
-				<p>Besuche unsere exklusive Angebotsseite.</p>
-				</li>
-				<li>
-				<p>Wähle deine Lieblingsartikel aus.</p>
-				</li>
-				<li>
-				<p>Gib deine Versanddaten ein – und schon ist dein Paket unterwegs!</p>
-				</li>
-				</ol>
-				<p>Aber beeil dich – die Stückzahlen sind begrenzt und die Aktion läuft nur für kurze Zeit!</p>
-				<p><img data-emoji="✨" class="an1" alt="✨" aria-label="✨" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/2728/32.png" loading="lazy"> <strong>Jetzt kostenlose Produkte sichern und Neues entdecken!</strong></p>
-				<p><a style="text-decoration:none" href="https://www.watana-design.com/en/website-design/redirect.php?url=https://vptrmftnkfewhscirhqe.supabase.co/functions/v1/trk1_clk?em_ofid=[em]|[of_id]"><b><font color="#0000ff">Jetzt gratis sichern</font></b></a>&nbsp;<img data-emoji="🔥" class="an1" alt="🔥" aria-label="🔥" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f525/32.png" loading="lazy"></p>
-				<p>Liebe Grüße<br><img style="width:1px; height:1px;" src="https://vptrmftnkfewhscirhqe.supabase.co/functions/v1/img_op_gml?em_ofid=[em]|[of_id]"/>
-				<strong>Dein Rewards-Team</strong></p>
-			"""
-		
-		
