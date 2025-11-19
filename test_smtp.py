@@ -1,5 +1,6 @@
 import os
 import smtplib
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from supabase import create_client, Client
@@ -9,6 +10,7 @@ from zoneinfo import ZoneInfo
 bcl = True
 def send_email(subject, sender_email, password, receiver_email, text, html, offer_id, smtp_id, smtp_host):
 	bccl = True
+	time.sleep(2)
 	try:
 		msg = MIMEMultipart("alternative")
 		msg["Subject"] = subject
