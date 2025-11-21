@@ -65,10 +65,24 @@ def main():
                     
                     em = str(response_data_3.data[0]['email'])
                     id = response_data_3.data[0]['id']
-                    
-                    na_me=driver.find_element(By.NAME, "username")
-                    na_me.clear()
-                    na_me.send_keys(em)
+                    try:
+                        na_me=driver.find_element(By.NAME, "username")
+                        na_me.clear()
+                        na_me.send_keys(em)
+                    except:
+                        url ="https://login.yahoo.com/account/challenge/username?done=https%3A%2F%2Fwww.yahoo.com%2F&authMechanism=secondary&chllngnm=fail&sessionIndex=Qg--"
+                        driver.get(url)
+                        time.sleep(3)
+                        
+                        a=driver.find_elements(By.TAG_NAME, "a")
+                        for link in a:
+                            if 'over' in link.get_attribute('innerText') or 'Recommencer' in link.get_attribute('innerText'):
+                                link.click()
+                                time.sleep(2)
+                                break   
+                        na_me=driver.find_element(By.NAME, "username")
+                        na_me.clear()
+                        na_me.send_keys(em) 
 
                     verifyYid=driver.find_element(By.NAME, "verifyYid")
                     verifyYid.click()
