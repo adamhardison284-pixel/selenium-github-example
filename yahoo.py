@@ -49,7 +49,7 @@ def main():
                         link.click()
                         time.sleep(2)
                         break       
-                table_name = "yahoo_de"
+                table_name = "yahoo_de_duplicate"
                 while True:
                     response_data_3 = supabase.rpc(
                         "select_before_and_after_update_yahoo",
