@@ -134,6 +134,7 @@ def main():
                             response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "yes"}).eq("id", id).execute()
                             response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
                             print(f"valid  -> {str(id)}: ", response_data_3.data[0]['valid'])
+                            print('yes: ', em)
                         except:
                             pass
                         driver.back()
@@ -146,6 +147,7 @@ def main():
                                     response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "yes"}).eq("id", id).execute()
                                     response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
                                     print(f"valid  -> {str(id)}: ", response_data_3.data[0]['valid'])
+                                    print('yes: ', em)
                                 except:
                                     pass
                             else:
@@ -153,6 +155,7 @@ def main():
                                     response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "no"}).eq("id", id).execute()
                                     response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
                                     print(f"valid  -> {str(id)}: ", response_data_3.data[0]['valid'])
+                                    print('no: ', em)
                                 except:
                                     pass
                                 
@@ -169,6 +172,7 @@ def main():
                             response_data_3 = supabase.table(table_name).update({"status":"finished", "valid": "no"}).eq("id", id).execute()
                             response_data_3 = supabase.table(table_name).select("id, emails, status, valid").eq("id", id).execute()
                             print(f"valid  -> {str(id)}: ", response_data_3.data[0]['valid'])
+                            print('no: ', em)
                         except:
                             pass
                             
