@@ -316,14 +316,15 @@ ems = [
     "joehalivy@gmail.com",
     "adamhardison284@gmail.com",
 ]
-for x in ems:
-    while thus:
-        user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
-        if len(user_names) > 0:
-            driver.execute_script(insert_script('id="username"', 'BennettPatel880@proton.me'))
-            time.sleep(3)
-            driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
-            time.sleep(3)
+
+while thus:
+    user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
+    if len(user_names) > 0:
+        driver.execute_script(insert_script('id="username"', 'BennettPatel880@proton.me'))
+        time.sleep(3)
+        driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
+        time.sleep(3)
+        for x in ems:
             driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
             th_new_mail = True
             while th_new_mail:
@@ -356,5 +357,5 @@ for x in ems:
                     th_text_area = False
                     
             
-            time.sleep(5)
+            time.sleep(10)
             thus = False
