@@ -308,11 +308,11 @@ def insert_letter(em, of_id):
     """
     return src
 ems = [
+    "arbi.naji@gmail.com",
     "zhoridlono@web.de",
     "DonasKarine13@gmx.fr",
     "adamoyler2705cc@web.de",
     "hermanhunter1174cc@web.de",
-    "arbi.naji@gmail.com",
     "joehalivy@gmail.com",
     "adamhardison284@gmail.com",
 ]
@@ -357,5 +357,5 @@ while thus:
                     th_text_area = False
                     
             
-            time.sleep(10)
+            time.sleep(80)
             thus = False
