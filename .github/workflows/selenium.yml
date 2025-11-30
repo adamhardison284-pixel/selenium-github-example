@@ -38,4 +38,4 @@ jobs:
         env:
           CHROME_BIN: /usr/bin/chromium-browser
           CHROMEDRIVER_PATH: /usr/bin/chromedriver
-        run: python yahoo.py
+        run: python proton.py
