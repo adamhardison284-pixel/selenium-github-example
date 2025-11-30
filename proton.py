@@ -19,6 +19,7 @@ key = "sb_secret_eVYWCtpPzmFsbJryaEug0A_EYBBcCII"
 python proton_send.py
 """
 
+profile_dir = tempfile.mkdtemp()
 chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")
 chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
 
