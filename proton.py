@@ -1,3 +1,4 @@
+import tempfile
 from selenium.webdriver import ChromeOptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
