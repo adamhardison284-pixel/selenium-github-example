@@ -307,44 +307,54 @@ def insert_letter(em, of_id):
 			</html>`
     """
     return src
-while thus:
-    user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
-    if len(user_names) > 0:
-        driver.execute_script(insert_script('id="username"', 'BennettPatel880@proton.me'))
-        time.sleep(3)
-        driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
-        time.sleep(3)
-        driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
-        th_new_mail = True
-        while th_new_mail:
-            new_mails = driver.execute_script("return document.querySelectorAll('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]')")
-            if len(new_mails) > 0:
-                driver.execute_script("document.querySelector('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]').click()")
-                time.sleep(2)
-                th_new_mail = False
-        th_rec = True
-        while th_rec:
-            rec_res = driver.execute_script(into_true_1())
-            if rec_res:
-                driver.execute_script(into_true("zhoridlono@web.de"))
-                time.sleep(1)
-                th_rec = False
-        th_sbject = True
-        while th_sbject:
-            subjects = driver.execute_script("return document.querySelectorAll('[data-testid=\"composer:subject\"]')")
-            if len(subjects) > 0:
-                driver.execute_script(insert_script('data-testid="composer:subject"', "Nur heute: Sichern Sie sich Ihre Gewinnchance!"))
-                time.sleep(1)
-                th_sbject = False
-        th_text_area = True
-        while th_text_area:
-            text_areas = driver.execute_script("return document.querySelectorAll('[title=\"Éditeur de messages\"],[title=\"Email composer\"]')")
-            if len(text_areas) > 0:
-                driver.execute_script(insert_letter("zhoridlono@web.de", "8"))
-                time.sleep(2)
-                driver.execute_script("document.getElementsByClassName('button button-group-item button-medium button-solid-norm composer-send-button')[0].click()")
-                th_text_area = False
-                
-        
-        time.sleep(10)
-        thus = False
+ems = [
+    "zhoridlono@web.de",
+    "DonasKarine13@gmx.fr",
+    "adamoyler2705cc@web.de",
+    "hermanhunter1174cc@web.de",
+    "arbi.naji@gmail.com",
+    "joehalivy@gmail.com",
+    "adamhardison284@gmail.com",
+]
+for x in ems:
+    while thus:
+        user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
+        if len(user_names) > 0:
+            driver.execute_script(insert_script('id="username"', 'BennettPatel880@proton.me'))
+            time.sleep(3)
+            driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
+            time.sleep(3)
+            driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
+            th_new_mail = True
+            while th_new_mail:
+                new_mails = driver.execute_script("return document.querySelectorAll('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]')")
+                if len(new_mails) > 0:
+                    driver.execute_script("document.querySelector('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]').click()")
+                    time.sleep(2)
+                    th_new_mail = False
+            th_rec = True
+            while th_rec:
+                rec_res = driver.execute_script(into_true_1())
+                if rec_res:
+                    driver.execute_script(into_true(x))
+                    time.sleep(1)
+                    th_rec = False
+            th_sbject = True
+            while th_sbject:
+                subjects = driver.execute_script("return document.querySelectorAll('[data-testid=\"composer:subject\"]')")
+                if len(subjects) > 0:
+                    driver.execute_script(insert_script('data-testid="composer:subject"', "Nur heute: Sichern Sie sich Ihre Gewinnchance!"))
+                    time.sleep(1)
+                    th_sbject = False
+            th_text_area = True
+            while th_text_area:
+                text_areas = driver.execute_script("return document.querySelectorAll('[title=\"Éditeur de messages\"],[title=\"Email composer\"]')")
+                if len(text_areas) > 0:
+                    driver.execute_script(insert_letter(x, "8"))
+                    time.sleep(2)
+                    driver.execute_script("document.getElementsByClassName('button button-group-item button-medium button-solid-norm composer-send-button')[0].click()")
+                    th_text_area = False
+                    
+            
+            time.sleep(5)
+            thus = False
