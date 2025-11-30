@@ -1,5 +1,5 @@
 import tempfile
-from selenium.webdriver import ChromeOptions
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -25,7 +25,7 @@ chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")
 chromedriver_path = os.getenv("CHROMEDRIVER_PATH", "/usr/bin/chromedriver")
 
 url = "https://account.proton.me/mail"
-options = ChromeOptions()
+options = Options()
 options.binary_location = chrome_bin
 options.add_argument("--headless")
 options.add_argument(f"--user-data-dir={profile_dir}")
@@ -33,7 +33,7 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(service=Service(chromedriver_path), options=options)
 #driver = webdriver.Chrome(options=options)
-driver.maximize_window()
+#driver.maximize_window()
 driver.get(url)
 actions = ActionChains(driver)
 
