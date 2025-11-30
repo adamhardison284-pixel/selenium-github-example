@@ -324,8 +324,8 @@ while thus:
         time.sleep(3)
         driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
         time.sleep(3)
+        driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
         for x in ems:
-            driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
             th_new_mail = True
             while th_new_mail:
                 new_mails = driver.execute_script("return document.querySelectorAll('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]')")
