@@ -325,9 +325,9 @@ table_name = "web_de"
 while thus:
     user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
     if len(user_names) > 0:
-        driver.execute_script(insert_script('id="username"', 'BritneyFraser744@proton.me'))
+        driver.execute_script(insert_script('id="username"', sender))
         time.sleep(3)
-        driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
+        driver.execute_script(insert_script('id="password"', password))
         time.sleep(3)
         driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
         for x in ems:
