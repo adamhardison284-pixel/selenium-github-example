@@ -7,14 +7,23 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 import os
-#from supabase import create_client, Client
+import requests
+from supabase import create_client, Client
+
+ip = requests.get("https://api.ipify.org?format=json").json()["ip"]
 
 
 url_ = "https://jdnmanfimzvbilacjgcj.supabase.co"
 key = "sb_secret_eVYWCtpPzmFsbJryaEug0A_EYBBcCII"
 
-#supabase: Client = create_client(url_, key)
+supabase: Client = create_client(url_, key)
 
+response_data_3 = supabase.rpc(
+    "get_proton_sender",
+    {"p_table": "ss", "p_offer_id": "ss"}
+).execute()
+sender = str(response_data_3.data[0]['email'])
+password = str(response_data_3.data[0]['pass'])
 
 """
 python proton_send.py
@@ -161,7 +170,7 @@ def insert_letter(em, of_id):
 								  <tr>
 									<td width="600" align="center" valign="middle" >
 									  <a href="https://vptrmftnkfewhscirhqe.supabase.co/functions/v1/trk1_clk?em_ofid={em}|{of_id}" style="outline:0;" target="_blank">
-										<img src="https://vptrmftnkfewhscirhqe.supabase.co/functions/v1/img_op_gml?em_ofid={em}|{of_id}" style="width: 100%; max-width: 100%; margin: 0px 0;" border="0" alt=""/>
+										<img src="https://vptrmftnkfewhscirhqe.supabase.co/functions/v1/img_op_gml?em_ofid={em}|{of_id}|{ip}" style="width: 100%; max-width: 100%; margin: 0px 0;" border="0" alt=""/>
 									  </a>
 							
 									</td>
@@ -308,19 +317,15 @@ def insert_letter(em, of_id):
     """
     return src
 ems = [
-    "arbi.naji@gmail.com",
-    "zhoridlono@web.de",
     "DonasKarine13@gmx.fr",
-    "adamoyler2705cc@web.de",
-    "hermanhunter1174cc@web.de",
-    "joehalivy@gmail.com",
-    "adamhardison284@gmail.com",
 ]
 
+offer_id = 8
+table_name = "web_de"
 while thus:
     user_names = driver.execute_script("return document.querySelectorAll('[id=\"username\"]')")
     if len(user_names) > 0:
-        driver.execute_script(insert_script('id="username"', 'EllieYoung808@proton.me'))
+        driver.execute_script(insert_script('id="username"', 'BritneyFraser744@proton.me'))
         time.sleep(3)
         driver.execute_script(insert_script('id="password"', 'ArbiNaji1987$'))
         time.sleep(3)
@@ -351,11 +356,11 @@ while thus:
             while th_text_area:
                 text_areas = driver.execute_script("return document.querySelectorAll('[title=\"Éditeur de messages\"],[title=\"Email composer\"]')")
                 if len(text_areas) > 0:
-                    driver.execute_script(insert_letter(x, "8"))
+                    driver.execute_script(insert_letter(x, str(offer_id)))
                     time.sleep(2)
                     driver.execute_script("document.getElementsByClassName('button button-group-item button-medium button-solid-norm composer-send-button')[0].click()")
                     th_text_area = False
                     
             
-            time.sleep(80)
+            time.sleep(30)
             thus = False
