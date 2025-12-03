@@ -330,7 +330,16 @@ while thus:
         driver.execute_script(insert_script('id="password"', password))
         time.sleep(3)
         driver.execute_script("document.querySelector('[class=\"button w-full button-large button-solid-norm mt-6\"]').click()")
-        for x in ems:
+        #for x in ems:
+        for y in range(100):
+            x = "adamoyler2705cc@web.de"
+            if y <= 98:
+                if y != 1:
+                    response_data_3 = supabase.rpc(
+                        "get_one_email_and_insert",
+                        {"p_offer_id": offer_id, "p_table": table_name}
+                    ).execute()
+                    x = str(response_data_3.data[0]['email'])
             th_new_mail = True
             while th_new_mail:
                 new_mails = driver.execute_script("return document.querySelectorAll('[class=\"button button-large button-solid-norm w-full hidden md:inline\"]')")
@@ -362,5 +371,5 @@ while thus:
                     th_text_area = False
                     
             
-            time.sleep(30)
+            time.sleep(90)
             thus = False
