@@ -1,3 +1,5 @@
 selenium
 supabase
 requests
+faster_whisper
+undetected_chromedriver
