@@ -62,6 +62,7 @@ document.querySelector('\div[id="identifierNext"]').querySelector('button').clic
 driver.execute_script(src)
 time.sleep(5)
 print('check captcha')
+driver.save_screenshot("screenshot_1.png")
 thus = True
 while thus:
     captcha = driver.execute_script("return document.querySelectorAll('[title=\"reCAPTCHA\"]')")
@@ -238,6 +239,7 @@ setNativeValue(sss, 'ArbiNaji1987$')
 document.querySelector('\div[id="passwordNext"]').querySelector('button').click()
 """
 
+driver.save_screenshot("screenshot_2.png")
 print('check password')
 th_name = True
 while th_name:
